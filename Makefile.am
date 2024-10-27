@@ -8,3 +8,4 @@ AM_CPPFLAGS = @STRIP_BEGIN@ \
 
 AM_CXXFLAGS = -Wall
 AM_FLAGS = -Wall
+AM_LDFLAGS=-lssl -lcrypto

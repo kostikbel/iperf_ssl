@@ -38,8 +38,8 @@ iperf_SOURCES = \
 		stdio.c \
 		tcp_window_size.c
 
-iperf_LDADD = $(LIBCOMPAT_LDADDS)
+iperf_LDADD = $(LIBCOMPAT_LDADDS) -lssl -lcrypto
 
 checkdelay_SOURCES = checkdelay.cpp
-checkdelay_LDADD = $(LIBCOMPAT_LDADDS)
+checkdelay_LDADD = $(LIBCOMPAT_LDADDS) -lssl -lcrypto
 

@@ -13,7 +13,7 @@ AC_DEFUN(DAST_CHECK_BOOL, [
 
 AC_CHECK_SIZEOF(bool)
 if test "$ac_cv_sizeof_bool" = 0 ; then
-  AC_DEFINE(bool, int)
+dnl  AC_DEFINE(bool, int)
 fi
 
 AC_CACHE_CHECK(if true is defined, ac_cv_have_true,
