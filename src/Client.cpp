@@ -356,7 +356,17 @@ void Client::RunTCP( void ) {
         // perform write 
 	reportstruct->errwrite=0;
 	currLen = sendTCP();
-        if ( currLen < 0 ) {
+	if (currLen <= 0 && isSSL(mSettings) && !isKTLS(mSettings)) {
+	  int e = SSL_get_error(conn, currLen);
+	  if (e == SSL_ERROR_WANT_WRITE)
+	    currLen = 0;
+	  else {
+	    reportstruct->errwrite=1;
+	    currLen = 0;
+	    fprintf(stderr, "SSL_write failed SSL error %d\n", e);
+	    break;
+	  }
+	} else if ( currLen < 0 ) {
 	    reportstruct->errwrite=1; 
 	    currLen = 0;
 	    if (
